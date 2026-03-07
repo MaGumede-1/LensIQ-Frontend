@@ -1,0 +1,41 @@
+export const JAVA_API_BASE = '/api';
+export const PYTHON_API_BASE = '/api';
+
+export const SUBSCRIPTION_STATUS = {
+  ACTIVE: 'ACTIVE',
+  PAST_DUE: 'PAST_DUE',
+  CANCELLED: 'CANCELLED',
+  PAUSED: 'PAUSED',
+  TRIAL: 'TRIAL',
+};
+
+export const PAYMENT_STATUS = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  CANCELLED: 'CANCELLED',
+  FAILED: 'FAILED',
+};
+
+export const PAYMENT_METHOD = {
+  CARD: 'CARD',
+  EFT: 'EFT',
+  BANK_TRANSFER: 'BANK_TRANSFER',
+};
+
+export const BILLING_INTERVAL = {
+  MONTHLY: 'MONTHLY',
+  YEARLY: 'YEARLY',
+};
+
+export const PROCESSING_STATUS = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+};
+
+export const SCORE_THRESHOLDS = {
+  EXCELLENT: 0.85,
+  GOOD: 0.7,
+  AVERAGE: 0.5,
+};
