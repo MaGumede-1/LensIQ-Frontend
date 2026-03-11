@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { Camera, Menu, X, LogOut, User } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
@@ -29,7 +31,7 @@ export default function Navbar({ onMenuToggle, sidebarOpen }) {
           >
             {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-          <Link to="/dashboard" className="flex items-center gap-2">
+          <Link href="/dashboard" className="flex items-center gap-2">
             <Camera className="h-7 w-7 text-brand-600" />
             <span className="text-lg font-bold text-surface-900 hidden sm:block">
               LensIQ
@@ -60,7 +62,7 @@ export default function Navbar({ onMenuToggle, sidebarOpen }) {
                 <p className="text-xs text-surface-500 truncate">{user?.email}</p>
               </div>
               <Link
-                to="/profile"
+                href="/profile"
                 onClick={() => setDropdownOpen(false)}
                 className="flex items-center gap-2 px-4 py-2.5 text-sm text-surface-700 hover:bg-surface-50"
               >

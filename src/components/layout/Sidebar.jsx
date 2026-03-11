@@ -1,4 +1,7 @@
-import { NavLink } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
   Upload,
@@ -18,6 +21,7 @@ const links = [
 ];
 
 export default function Sidebar({ open, onClose }) {
+  const pathname = usePathname();
   return (
     <>
       {/* Mobile overlay */}
@@ -37,21 +41,19 @@ export default function Sidebar({ open, onClose }) {
       >
         <nav className="flex flex-col gap-1 p-4">
           {links.map(({ to, label, icon: Icon }) => (
-            <NavLink
+            <Link
               key={to}
-              to={to}
+              href={to}
               onClick={onClose}
-              className={({ isActive }) =>
-                `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'bg-brand-50 text-brand-700'
-                    : 'text-surface-600 hover:bg-surface-50 hover:text-surface-900'
-                }`
-              }
+              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                pathname === to
+                  ? 'bg-brand-50 text-brand-700'
+                  : 'text-surface-600 hover:bg-surface-50 hover:text-surface-900'
+              }`}
             >
               <Icon className="h-5 w-5" />
               {label}
-            </NavLink>
+            </Link>
           ))}
         </nav>
       </aside>

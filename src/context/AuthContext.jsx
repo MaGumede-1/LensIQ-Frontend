@@ -1,16 +1,19 @@
+'use client';
+
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { authApi } from '../api/authApi';
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
+    if (typeof window === 'undefined') return null;
     const stored = localStorage.getItem('user');
     return stored ? JSON.parse(stored) : null;
   });
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -57,9 +60,9 @@ export function AuthProvider({ children }) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       setUser(null);
-      navigate('/login');
+      router.push('/login');
     }
-  }, [navigate]);
+  }, [router]);
 
   const value = { user, loading, login, register, logout, isAuthenticated: !!user };
 

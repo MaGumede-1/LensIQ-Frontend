@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { Images, Clock, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import StatusBadge from '../common/StatusBadge';
 import { formatDate } from '../../utils/helpers';
@@ -15,7 +17,7 @@ export default function BatchCard({ batch }) {
 
   return (
     <Link
-      to={`/batches/${batch.batch_id}`}
+      href={`/batches/${batch.batch_id}`}
       className="group flex items-center gap-4 rounded-xl border border-surface-200 bg-white p-4 transition-all hover:shadow-md hover:border-brand-200"
     >
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 group-hover:bg-brand-100 transition-colors">

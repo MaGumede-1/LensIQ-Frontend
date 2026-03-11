@@ -1,9 +1,19 @@
-import { Navigate, Outlet } from 'react-router-dom';
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import Spinner from './Spinner';
 
-export default function ProtectedRoute() {
+export default function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      router.replace('/login');
+    }
+  }, [loading, isAuthenticated, router]);
 
   if (loading) {
     return (
@@ -13,5 +23,9 @@ export default function ProtectedRoute() {
     );
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  return children;
 }
